@@ -1,0 +1,156 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
+        
+        <title>Object Detection in Dark Image</title>
+
+		<link rel="shortcut icon" type="image/icon" href="{{ url_for('static', filename='logo/favicon.png') }}"/>
+        <link rel="stylesheet" href="static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/css/flaticon.css">
+        <link rel="stylesheet" href="static/css/animate.css">
+        <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/css/bootsnav.css" >	
+        <link rel="stylesheet" href="static/css/res-style.css">
+        <link rel="stylesheet" href="static/css/responsive.css">
+
+    </head>
+	
+	<body>
+
+		<!--experience start -->
+		<section id="results" class="experience">
+			<div class="section-heading text-center">
+				<h1>Results</h1>
+			</div>
+			<div class="container">
+				<div class="experience-content">
+						<div class="main-timeline">
+							<ul>
+								<li>
+									<div class="single-timeline-box fix">
+										<div class="row">
+											<div class="col-md-5">
+												<div class="experience-time text-right">
+													<h2>Original Image</h2>
+													<!-- <h3>senior UI/UX designer</h3> -->
+												</div>
+											</div>
+											<div class="col-md-offset-1 col-md-5">
+												<div class="timeline">
+													<div class="timeline-content">
+														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+														<img src="static/original_image/{{filename}}" alt="My Image">
+													</div>
+												</div><!--/.timeline-->
+											</div><!--/.col-->
+										</div>
+									</div><!--/.single-timeline-box-->
+								</li>
+
+								<li>
+									<div class="single-timeline-box fix">
+										<div class="row">
+											<div class="col-md-offset-1 col-md-5 experience-time-responsive">
+												<div class="experience-time">
+													<h2>
+														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+														Enhanced Image
+													</h2>
+													<h3>UI/UX designer</h3>
+												</div><!--/.experience-time-->
+											</div><!--/.col-->
+											<div class="col-md-5">
+												<div class="timeline">
+													<div class="timeline-content text-right">
+														<img src="static/enhanced_image/{{filename}}" alt="My Image">
+													</div><!--/.timeline-content-->
+												</div><!--/.timeline-->
+											</div><!--/.col-->
+											<div class="col-md-offset-1 col-md-5 experience-time-main">
+												<div class="experience-time">
+													<h2>
+														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+														Enhanced Image
+													</h2>
+													<!-- <h3>UI/UX designer</h3> -->
+												</div><!--/.experience-time-->
+											</div><!--/.col-->
+										</div>
+									</div><!--/.single-timeline-box-->
+								</li>
+
+								<li>
+									<div class="single-timeline-box fix">
+										<div class="row">
+											<div class="col-md-5">
+												<div class="experience-time text-right">
+													<h2>Object Detection</h2>
+													<!-- <h3>frontend developer</h3> -->
+												</div><!--/.experience-time-->
+											</div><!--/.col-->
+											<div class="col-md-offset-1 col-md-5">
+												<div class="timeline">
+													<div class="timeline-content">
+														<span><i class="fa fa-circle" aria-hidden="true"></i></span>
+														<img src="static/{{detected_name}}/{{filename}}" alt="My Image">
+													</div><!--/.timeline-content-->
+												</div><!--/.timeline-->
+											</div><!--/.col-->
+										</div>
+									</div><!--/.single-timeline-box-->
+								</li>
+
+							</ul>
+						</div><!--.main-timeline-->
+					</div><!--.experience-content-->
+			</div>
+
+		</section><!--/.experience-->
+		<!--experience end -->
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="static/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="static/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="static/js/bootsnav.js"></script>
+		
+		<!-- jquery.sticky.js -->
+		<script src="static/js/jquery.sticky.js"></script>
+		
+		<!-- for progress bar start-->
+
+		<!-- progressbar js -->
+		<script src="static/js/progressbar.js"></script>
+
+		<!-- appear js -->
+		<script src="static/js/jquery.appear.js"></script>
+
+		<!-- for progress bar end -->
+
+		<!--owl.carousel.js-->
+        <script src="static/js/owl.carousel.min.js"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		
+        
+        <!--Custom JS-->
+        <script src="static/js/custom.js"></script>
+        
+    </body>
+	
+</html>

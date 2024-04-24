@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
+        
+        <title>Object Detection in Dark Image</title>
+
+		<link rel="shortcut icon" type="image/icon" href="{{ url_for('static', filename='logo/favicon.png') }}"/>
+        <link rel="stylesheet" href="static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/css/flaticon.css">
+        <link rel="stylesheet" href="static/css/animate.css">
+        <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+		<link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/css/bootsnav.css" >	
+        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="static/css/responsive.css">
+
+    </head>
+	
+	<body>
+		<!--welcome-hero start -->
+		<section id="welcome-hero" class="welcome-hero">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="header-text">
+							<h2> Object Detection in Dark Images </h2>
+							<!-- <p>Upload the image here..</p> -->
+								
+							<form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data"> 
+								<div class="form-group">
+								  <label for="image"><p>Upload the image here..</p></label>
+								  <input type="file" id="image" name="image" accept="image/*">
+								</div>
+								<button type="submit" class="btn-submit">Submit</button>
+							</form>
+
+							<!-- <a href="#results">Submit</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<!--welcome-hero end -->
+
+		
+		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="static/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="static/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="static/js/bootsnav.js"></script>
+		
+		<!-- jquery.sticky.js -->
+		<script src="static/js/jquery.sticky.js"></script>
+		
+		<!-- for progress bar start-->
+
+		<!-- progressbar js -->
+		<script src="static/js/progressbar.js"></script>
+
+		<!-- appear js -->
+		<script src="static/js/jquery.appear.js"></script>
+
+		<!-- for progress bar end -->
+
+		<!--owl.carousel.js-->
+        <script src="static/js/owl.carousel.min.js"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		
+        
+        <!--Custom JS-->
+        <script src="static/js/custom.js"></script>
+        
+    </body>
+	
+</html>
