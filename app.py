@@ -2,15 +2,13 @@ import os
 
 import keras
 import numpy as np
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request
 from huggingface_hub import from_pretrained_keras
 from PIL import Image
 from ultralytics import YOLO
 from werkzeug.utils import secure_filename
 
-# from model import image_enhancement
-
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 ## Image Enhancement Model
 image_enhancement_model = from_pretrained_keras("keras-io/lowlight-enhance-mirnet")
@@ -23,6 +21,14 @@ app.config['UPLOAD_FOLDER'] = "static/original_image"
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    
+def finalpath(filename):
+    folder_path = 'static/runs'
+    subfolder = [f for f in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, f))]
+    latest = max(subfolder, key=lambda x: os.path.getctime(os.path.join(folder_path, x)))
+    final_path = "static/runs/" + latest + "/" + filename
+    print(final_path)
+    return final_path
 
 @app.route('/')
 def index():
@@ -62,10 +68,11 @@ def upload():
         print("Enhancement Done")
 
         final_path = os.path.join('static/enhanced_image', filename)
-        yolo_model.predict(source=final_path, save=True, project="static", name="detected_image")
+        yolo_model.predict(source=final_path, save=True, project="static/runs", name="predict")
+        result = finalpath(filename)
         print("Detection Done")
 
-        return render_template('results.html', filename=filename)
+        return render_template('results.html', filename=filename, result = result)
     else:
         return 'Invalid file format'
 
