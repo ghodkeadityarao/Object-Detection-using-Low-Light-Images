@@ -1,17 +1,25 @@
 import os
 
+import keras
+import numpy as np
 from flask import Flask, redirect, render_template, request, url_for
+from huggingface_hub import from_pretrained_keras
+from PIL import Image
 from ultralytics import YOLO
 from werkzeug.utils import secure_filename
 
-from model import image_enhancement
+# from model import image_enhancement
 
-UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+## Image Enhancement Model
+image_enhancement_model = from_pretrained_keras("keras-io/lowlight-enhance-mirnet")
+
+## Object Detection Model
+yolo_model = YOLO('pretrained/best.pt')
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = "static/original_image"
-app.config['i'] = 5
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -32,22 +40,32 @@ def upload():
     
     if image and allowed_file(image.filename):
         filename = secure_filename(image.filename)
-        
         source_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         image.save(source_path)
         print("Original Done")
 
-        image_enhancement(source_path, filename)
+        low_light_img = Image.open(source_path).convert('RGB')
+        low_light_img = low_light_img.resize((640,640))
+
+        image = keras.utils.img_to_array(low_light_img)
+        image = image / 255.0
+        image = np.expand_dims(image, axis = 0)
+
+        output = image_enhancement_model.predict(image)
+        output_image = output[0] * 255.0
+        output_image = output_image.clip(0, 255)
+
+        output_image = output_image.reshape(output_image.shape[0], output_image.shape[1], 3)
+        output_image = np.uint32(output_image)
+        arr = Image.fromarray(output_image.astype('uint8'),'RGB')
+        arr.save('static/enhanced_image/'+filename)
         print("Enhancement Done")
 
-        model = YOLO('pretrained/best.pt')
         final_path = os.path.join('static/enhanced_image', filename)
-        model.predict(source=final_path, save=True, project="static", name="detected_image")
+        yolo_model.predict(source=final_path, save=True, project="static", name="detected_image")
         print("Detection Done")
-        app.config['i'] += 1
-        detected_name = "detected_image" + str(app.config['i'])
 
-        return render_template('results.html', filename=filename, detected_name = detected_name)
+        return render_template('results.html', filename=filename)
     else:
         return 'Invalid file format'
 
